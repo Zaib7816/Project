@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <title>Unversity Details</title>
+    <style>
+
+      .something:hover{
+          background-color: #6168c9;
+          color: white;
+          transition: .3s;
+          transform: scale(1.1);
+        }
+        .something{
+          transition: .3s;
+        }
+        .card_effect:hover{
+          box-shadow: 0px 0px 30px silver;
+          transition: .3s;
+          transform: scale(1.1);
+        }
+        .card_effect{
+          box-shadow: 0px 0px 20px silver;
+          transition: .3s;
+        }
+      
+        .nav-item a:hover{
+          background-color: darkgray;
+          color: white;
+          border-radius: 5px;
+        }
+              ::-webkit-scrollbar{
+              width: 5px;
+            }
+            ::-webkit-scrollbar-track{
+              box-shadow: inset 0 0 5px grey;
+              border-radius: 10px;
+            }
+            ::-webkit-scrollbar-thumb{
+              background: black;
+              border-radius: 10px;
+            }
+            ::-webkit-scrollbar-thumb:hover{
+              background: #3a3d06;
+            }
+            ul li a{
+                border-radius: 5px;
+                color: white;
+            }
+            ul li a i {
+                color: black;
+            }
+            #search {
+                position: fixed;
+                left: 95vw;  
+                cursor: pointer;  
+            }
+            #log {
+                  
+                color: white;  
+            }
+            #reg {
+                
+                color: white;    
+            }
+      
+            #navb{
+                position: sticky;
+                top:0;
+                padding: 0px;
+                left:0;
+                width: 100%;
+                z-index: 1;
+            }
+            #logo{
+                width: 200px;
+                height: 100px;
+                
+            }
+            /* media query on 992 */
+            @media (max-width: 992px) {
+                .asdqwe {
+                    display: none;
+                }
+            }
+          </style>
+  </head>
+  <body>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow ">
+        <div class="container-fluid">
+  
+  
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+  
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+  
+  
+              {% if request.session.user_id == "" %}
+              <li class="nav-item">
+                <a class="nav-link px-4 border-0 py-2 text-dark bnt btn-white shadow me-3" aria-current="page" href="/">Home</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link px-4 border-0 py-2 text-dark bnt btn-white shadow me-3" aria-current="page" href="/login">login</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link px-4 border-0 py-2 text-dark bnt btn-white shadow me-3" aria-current="page" href="/register">Register</a>
+              </li>
+
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link px-4 border-0 py-2 text-dark bnt btn-white shadow me-3" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-4 border-0 py-2 text-dark bnt btn-white shadow me-3" aria-current="page" href="/about_page">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-4 border-0 py-2 text-dark bnt btn-white shadow me-3" aria-current="page" href="/contact_page">Contact Us</a>
+              </li>
+              {% endif %}
+  
+  
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+
+ <div class="container">
+
+      <h2 class="mt-3">{{uni_data.0.name}} Details</h2>
+      
+      <div class="row">
+        <div class="col-md-12">
+        
+        {% if request.session.user_role == "user" %}
+        <a href="/add_to_wishlist/{{uni_data.0.id}}" class="btn btn-success btn-sm float-end me-5 mb-3"><i class="fa fa-add"></i> Wish Lish</a>
+        {% endif %}
+    </div>
+    </div>
+ <div class="card shadow ">
+ <div class="card-body">
+ <div class="row">
+        <div class="col-md-4">
+
+
+
+    
+
+
+
+            <img src="{{uni_data.0.image.url}}" class="w-100" >
+
+
+        </div>
+        <div class="col-md-8">
+            <div class="table-responsive">
+
+
+                <table class="table shadow-sm table-bordered mt-3 table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <td>{{uni_data.0.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{uni_data.0.city}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{uni_data.0.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td><details><summary>View Details</summary><p>{{uni_data.0.description}}</p></details></td>
+                    </tr>
+                    <tr>
+                        <th>Apply For</th>
+                        <td><a href="{{uni_data.0.uni_link}}" class="btn btn-sm btn-success">Click Here</a></td>
+                    </tr>
+
+                </table>
+
+                
+
+            </div>
+
+        </div>
+      </div>
+           </div>
+            </div>
+
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="card-title text-center mt-3">
+            <h3>Provided Course</h3>
+        </div>
+    <div class="card shadowd">
+        <div class="card-body">
+            <table class="table table-bordered table-striped shadow">
+                <thead class="thead-striped">
+          
+                <th>Coures</th>
+                <th>Year</th>
+                <th>Merit</th>
+            </thead>
+            {% for i in data2 %}
+                <tr>
+
+                    <td>{{i.4}}</td>
+                    <td>{{i.2}}</td>
+                    <td>{{i.3}}%</td>
+                </tr>
+               {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<figure class="text-center mt-5">
+  <blockquote class="blockquote">
+    <p>ALL UNIVERSITEIS IN SAME CITY</p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    University Recommendation System
+  </figcaption>
+</figure>
+
+
+<div class="row mb-5">
+{% for i in uni %}
+
+
+  <div class="col-md-4 mt-4">
+    <div class="card shadow-lg">
+
+<img src="{{i.image.url}}" class="card-img-top" alt="..." style="width: 100%; height: 300px;">
+
+
+
+<div class="card-body">
+<h5 class="card-title">{{i.name}}</h5>
+<p class="card-text">{{i.description|truncatechars:100}}</p>
+<a href="/univeristy_details/{{i.id}}" class="btn btn-warning">Details</a>
+</div>
+</div>
+
+  </div>
+
+  {%endfor%}
+
+
+
+
+
+{% if messages %}
+<div class="row">
+  <div class="col-md-12">
+  {% for message in messages %}
+  <p  {% if message.tags %} class=" alert shadow alert-dark mt-5 " {% endif %}> {{ message }} </p>
+  {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+</div>
+</div>  
+
+
+
+<div class="mt-5" style="overflow: hidden;">
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-dark"
+          style="background-color: #ECEFF1"
+          >
+    <!-- Section: Social media -->
+    <section
+             class="d-flex justify-content-between p-4 text-dark bg-warning"
+             >
+      <!-- Left -->
+      <div class="me-5">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-8  mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold p-3">Recommendation System</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+            <p class="p-3">
+              Here you can use rows and columns to organize your footer
+              content. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+       
+
+          <!-- Grid column -->
+          <div class="col-md-4 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Contact</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+            <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+            <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div
+         class="text-center p-3"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      © 2020 Copyright:
+      <a class="text-dark"
+         >ME</a
+        >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</div>
+<!-- End of .container -->
+
+
+  
+
+
+
+
+  </body>
+     <script src="{% static 'bundle.js' %}"></script>
+</html>

@@ -1,0 +1,146 @@
+{% if request.session.user_id != "" and request.session.user_role != "user"  %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>{% block title %} {% endblock title %}</title>
+
+        {% load static %}
+<link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'dashboard.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+</header>
+
+<style>
+  .nav-link .fa{
+    font-size: 1em !important;
+    margin-right: 9px !important;
+  }
+</style>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">
+              <span class="fa fa-home"></span>Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin">
+              <span class="fa fa-home"></span>Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/student_page">
+                <span class="fa fa-users"></span>Students
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/manage_universities">
+                <span class="fa fa-university" style="font-size: 1em;"></span>Universities
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="/add_city">
+                <span class="fa fa-map-marker" style="font-size: 1em;"></span>Add Ciities
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Manage_feedback">
+                <span class="fa fa-comment" style="font-size: 1em;"></span>Manage Feedback
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mail_page">
+                <span class="fa fa-envelope" style="font-size: 1em;"></span>Mails
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin_about_page">
+                <span class="fa fa-envelope" style="font-size: 1em;"></span>Web About
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">
+                <span class="fa fa-sign-out" style="font-size: 1em;"></span>Logout
+            </a>
+          </li>
+        </ul>
+
+
+        </ul>
+      </div>
+    </nav>
+
+
+      
+{% block body %}
+{% endblock body %}
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+<script src="{% static 'bundle.js' %}"></script>
+<script src="{% static 'feather.min.js' %}"></script>
+  <script src="{% static 'dashboard.js' %}"></script>
+  
+  </body>
+</html>
+{%else%}
+<script>window.location.href="/logout"</script>
+{% endif %}

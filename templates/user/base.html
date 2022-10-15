@@ -1,0 +1,139 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-light shadow">
+    <div class="container-fluid">
+      
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if request.session.user_id == "" %}
+      <style>
+        ul li a{
+            border-radius: 25px;
+        }
+        ul li a i {
+            color: black;
+        }
+
+      </style>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       
+          <img src="{% static 'img/logo.png' %}" alt="" class="nav-link " style="height:90px; width:200px; margin-top:0px;">
+       
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
+      
+     
+
+          
+          
+          <li class="nav-item">
+            <a class="nav-link bnt btn-dark me-3" id="nav" aria-current="page" href="">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link bnt btn-dark  me-3" aria-current="page" href="login_page">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link bnt btn-dark me-3" aria-current="page" href="register_page">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link bnt btn-dark me-3" aria-current="page" href="about_page">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link bnt btn-dark me-3" aria-current="page" href="/contact_page">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  me-0 " aria-current="page" href=""><i class="fa fa-search"></i></a>
+          </li>
+          
+
+                  
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% elif request.session.user_role == "admin" %}
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+  
+ 
+
+      <li class="nav-item">
+        <a class="nav-link" id="nav" aria-current="page" href="">Home</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link  " aria-current="page" href="/admin">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+      </li>
+
+              
+    </ul>
+  </div>
+</div>
+</nav>
+
+
+
+          {% else %}
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+
+          <li class="nav-item">
+            <a class="nav-link" id="nav" aria-current="page" href="">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link  " aria-current="page" href="/user">Account</a>
+          </li>
+
+          <li class="nav-item float-end">
+            <a class="nav-link float-end" aria-current="page" href="/near_me">Near me</a>
+          </li>
+
+          <li class="nav-item float-end">
+            <a class="nav-link float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Recommendations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+          </li>
+          
+
+            <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Enter Marks</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/import_modal" method="POST">
+                    {% csrf_token %} 
+                    
+                      <input type="text" class="form-control" placeholder="Enter Marks" name="marks">
+                      <button type="submit" class="btn btn-primary mt-2">Add</button>
+                    </div>
+                  </form>
+                </div>                 
+              </div>
+            </div>
+          </div>
+         
+          
+        
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% endif %}

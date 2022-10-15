@@ -1,0 +1,50 @@
+{% extends 'admin/backend.html' %}
+
+
+{% block body %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+      <h2 class="mt-3">Add-Universities</h2>
+      <hr>
+
+<div class="container mt-5">
+      <div class="card shadow">
+            <div class="card-body">
+                  <form action="" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+                      <input type="hidden" name="id" value="{{data.id}}" >
+<div class="mb-3">
+<input type="text" class="form-control" name="university_name" value="{{data.name}}" >
+</div>
+<div class="mb-3">
+<input type="text" class="form-control" name="university_address" value="{{data.address}}" >
+</div>
+<div class="mb-3">
+<input type="file" class="form-control" name="university_img" title="University's Image" >
+</div>
+<div class=" ">
+<input type="submit" class="btn btn-success" value="update" >
+</div>
+
+                  </form>
+
+
+            </div>
+
+      </div>
+
+</div>
+{% if messages %}
+<div class="row">
+  <div class="col-md-12">
+  {% for message in messages %}
+  <p  {% if message.tags %} class=" alert shadow alert-dark mt-5 " {% endif %}> {{ message }} </p>
+  {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock body %}
+

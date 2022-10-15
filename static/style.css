@@ -1,0 +1,61 @@
+:root {
+    --blur:8px;
+    --contrast:0%;
+    --brightness:100%;
+    --contrast:100%;
+    --dropshadow:0px 0px 0px black;
+    --grayscale:100%;
+    --hue-rotate:0deg;
+    --invert:0%;
+    --opacity:50%;
+    --saturate:50%;
+    --sepia:0%;
+}
+
+*{
+	font-family: 'Poppins', sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+.filter {
+    filter: blur(var(--blur)) contrast(var(--contrast)) brightness(var(--brightness)) contrast(var(--contrast)) drop-shadow(var(--dropshadow)) grayscale(var(--grayscale)) hue-rotate(var(--hue-rotate)) invert(var(--invert)) opacity(var(--opacity)) saturate(var(--saturate)) sepia(var(--sepia)); 
+}
+
+.red_color{
+	color: white;
+	transition: .5s;
+}
+.red_color:hover{
+	color: #f54337;
+	transition: .2s;
+}
+
+.heading_c{
+  font-size: 1em;
+	color: #f54337;
+}
+
+
+.simple_line{
+  font-size: 0.8em;
+}
+
+.bg_image{
+
+
+
+  width: 100%;
+  height: 800px;
+
+  background: 
+    /* top, transparent red */ 
+    linear-gradient(
+      rgba(15, 25, 50, 0.831), 
+      rgba(15, 25, 50, 0.831)
+    ),
+    /* bottom, image */
+    url(../backend/dist/img/bg.jpg);
+    background-size: cover;
+
+}

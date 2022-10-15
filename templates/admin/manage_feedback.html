@@ -1,0 +1,53 @@
+{% extends 'admin/backend.html' %}
+
+
+{% block body %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+    <h2 class="mt-3">Manage Feedbacks</h2>
+    <hr>
+
+
+
+  
+
+
+<div class="row">
+<div class="container">
+    <div class="col-12">
+        <div class="">
+            <table class="table table-bordered table-striped shadow ">
+                <thead class="thead-striped">
+                    
+                        <th>No</th>
+                            <th>Name</th>
+                                <th>Feedback</th>
+                    
+                </thead>
+                {% for i in data %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.1}}</td>
+                        <td>{{i.2}}</td>
+                        <td><a href="delete_feedback/{{i.0}}" class="btn btn-sm"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                    {% endfor %}
+            </table>
+            
+        </div>
+    </div>
+</div>
+</div>
+{% if messages %}
+<div class="row">
+  <div class="col-md-12">
+  {% for message in messages %}
+  <p  {% if message.tags %} class=" alert shadow alert-dark mt-5 " {% endif %}> {{ message }} </p>
+  {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+</main>
+
+{% endblock body %}
